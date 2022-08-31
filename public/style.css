@@ -1,0 +1,50 @@
+
+/* layouts */
+
+.logo{
+    height:2rem;
+    width: auto;
+}
+
+.brand{
+    font-family: 'Pacifico', cursive;
+}
+
+/* Posts/index */
+
+.todo-card{
+    width: 20rem;
+}
+
+.todo-card:hover{
+    background-color: #edebeb;
+}
+
+.todo-desc{
+    color: #737373;
+}
+
+.todo-option{
+    font-size: 1.2rem;
+    color: #000000;
+}
+
+.todo-option:hover{
+    color: #4287f5;
+}
+
+.card-upper{
+    transform: rotate(0);
+}
+
+/* Posts/Show  */
+
+.back-icon{
+    font-size: 1.5rem;
+}
+
+.view-container,.create-container{
+    width: 100%;
+    max-width: 700px;
+}
+
