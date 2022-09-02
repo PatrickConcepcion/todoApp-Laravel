@@ -60,6 +60,7 @@
                         <li class="nav-item text-end bx-tada-hover">
                             <a class="nav-link" href="{{ url('/') }}">About</a>
                         </li>
+                        
                         <li class="nav-item text-end bx-tada-hover">
                             <a class="nav-link" href="{{ url('/') }}">Contact</a>
                         </li>

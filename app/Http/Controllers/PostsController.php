@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class PostsController extends Controller
 {
@@ -15,9 +15,8 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $me = auth()->user();
-        // $posts = Post::whereUserId($me->id)->orderBy('created_at', 'desc')->get();
-        $posts = $me->posts()->get();
+        $id = Auth::id();
+        $posts = Post::whereUserId($id)->orderBy('created_at', 'desc')->get();
         return view('posts.index')->with('posts',$posts);
     }
 
