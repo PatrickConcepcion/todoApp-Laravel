@@ -101,6 +101,11 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
+        'admin' => [
+            'provider' => 'admin',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ]
     ],
 
     /*

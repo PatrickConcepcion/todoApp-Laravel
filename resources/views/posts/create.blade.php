@@ -9,7 +9,7 @@
         <h3 class="text-center">Create Todo</h3>
 
         <div class="create-container mx-auto">
-            {!! Form::open(['action' => 'App\Http\Controllers\PostsController@store', 'method' => 'POST']) !!}
+            {!! Form::open(['action' => 'App\Http\Controllers\PostsController@store', 'method' => 'PUT']) !!}
                 <div class="form-group">
                     {{ Form::label('title','Title') }}
                     {{ Form::text('title', '', ['class' => 'form-control todo-input','placeholder' => 'Title']) }}

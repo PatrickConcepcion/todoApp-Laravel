@@ -3,8 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PostsController;
+use App\Http\Controllers\Admin\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,22 +23,40 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+// Route::resource('/posts', 'App\Http\Controllers\PostsController');
 
-Route::resource('/posts', 'App\Http\Controllers\PostsController');
-
-// Route::prefix('/posts')->group(function (){
+Route::prefix('/posts')->group(function (){
     
-//     Route::get('/', [PostsController::class, 'index'])->name('posts.index');
-//     Route::get('/{id}', [PostsController::class, 'show'])->name('posts.show');
-//     Route::get('/create', [PostsController::class, 'create'])->name('posts.create');
-//     Route::post('/', [PostsController::class, 'store'])->name('posts.store');
-//     Route::get('/{id}/edit', [PostsController::class, 'edit'])->name('posts.edit');
-//     Route::patch('/{id}', [PostsController::class, 'update'])->name('posts.update');
-//     Route::delete('/{id}', [PostsController::class, 'destroy'])->name('posts.destroy'); 
+    Route::get('/', [PostsController::class, 'index'])->name('posts.index');
+    Route::put('/', [PostsController::class, 'store'])->name('posts.store');
 
-// });
+    Route::get('/create', [PostsController::class, 'create'])->name('posts.create');
 
-//Admin Routes
+    Route::prefix('/{post}')->group(function (){
+        Route::get('/', [PostsController::class, 'show'])->name('posts.show');
+        Route::get('/edit', [PostsController::class,'edit'])->name('posts.edit');
+        Route::put('/', [PostsController::class, 'update'])->name('posts.update');
+        Route::delete('/', [PostsController::class, 'destroy'])->name('posts.destroy');
+    });
+});
 
-Route::get('/admin/login', [AdminController::class, 'adminlogin']);
+Route::prefix('/admin')->name('admin.')->namespace('Admin')->group(function(){
+        
+    //Login Routes
+    Route::namespace('Auth')->group(function(){
+        Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+        // Route::get('/login','LoginController@showLoginForm')->name('login');
+        Route::post('/login',[LoginController::class, 'login']);
+        Route::post('/logout','LoginController@logout')->name('logout');
+
+        //Forgot Password Routes
+    //     Route::get('/password/reset','ForgotPasswordController@showLinkRequestForm')->name('password.request');
+    //     Route::post('/password/email','ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+
+    //    Reset Password Routes
+    //     Route::get('/password/reset/{token}','ResetPasswordController@showResetForm')->name('password.reset');
+    //     Route::post('/password/reset','ResetPasswordController@reset')->name('password.update');
+    });
+});
+
+ 

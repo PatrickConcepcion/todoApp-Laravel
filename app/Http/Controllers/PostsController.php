@@ -36,14 +36,13 @@ class PostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Post $post)
     {
         $this->validate($request, [
             'title' => 'required',
             'body' => 'required'
         ]);
 
-        $post = new Post;
         $post->todoTitle = $request->input('title');
         $post->todoBody = $request->input('body');
         $post->user_id = auth()->user()->id;
@@ -58,10 +57,11 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Post $post)
     {
-        $post = Post::find($id);
-        return view ('posts.show')->with('post', $post);
+        // return view('posts.show')->with('post', $post);
+        return view('posts.show')->with(compact(['post']));
+
     }
 
     /**
@@ -70,10 +70,9 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        $post = Post::find($id);
-        return view ('posts.edit')->with('post', $post);
+        return view('posts.edit')->with(compact(['post']));
     }
 
     /**
@@ -83,19 +82,18 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
         $this->validate($request, [
             'title' => 'required',
             'body' => 'required'
         ]);
 
-        $post = Post::find($id);
         $post->todoTitle = $request->input('title');
         $post->todoBody = $request->input('body');
         $post->save();
 
-        return redirect('/posts')->with('success', 'Todo Updated');
+        return redirect('posts')->with('success', 'Todo Updated');
     }
 
     /**
@@ -104,11 +102,9 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        $post = Post::find($id);
         $post->delete();
-
         return redirect('/posts')->with('success', 'Todo Deleted');
     }
 }
