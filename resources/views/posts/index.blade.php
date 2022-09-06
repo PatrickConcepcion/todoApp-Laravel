@@ -18,7 +18,8 @@
                                     <h3 class="card-title">{{ $post->todoTitle }}</h3>
                                     <p class="todo-desc fs-5">{{ $post->todoBody }}</p>
                                     <small>{{ $post->created_at }}</small>
-                                    <a href="/posts/{{ $post->id }}" class="stretched-link"></a>
+                                    <a href="{{ route('posts.show', $post) }}" class="stretched-link"></a>
+
                                 </div>
                                 
                                 <div class="card-control mt-4 d-flex">

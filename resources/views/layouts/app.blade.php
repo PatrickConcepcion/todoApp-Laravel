@@ -98,8 +98,7 @@
             @include('components.messages')
             @yield('content')
         </main>
+
     </div>
-    <script>
-    </script>
 </body>
 </html>

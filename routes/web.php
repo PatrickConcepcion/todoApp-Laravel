@@ -28,9 +28,6 @@ Route::get('/', function () {
 Route::get('/contact', [PublicController::class, 'contact'])->name('contact');
 Route::get('/about', [PublicController::class, 'about'])->name('about');
 
-
-
-
 Auth::routes();
 
 // Route::resource('/posts', 'App\Http\Controllers\PostsController');

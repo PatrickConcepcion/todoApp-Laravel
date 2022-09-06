@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <a href="/posts">
+        <a href="{{ route('posts.index') }}">
             <i class='back-icon bx bx-arrow-back bx-tada-hover'></i>
         </a>
          

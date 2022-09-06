@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class AdminHomeController extends Controller
 {
@@ -18,6 +19,7 @@ class AdminHomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        return view('admin.home');
+        $user = User::count();
+        return view('admin.home')->with(compact(['user']));
     }
 }

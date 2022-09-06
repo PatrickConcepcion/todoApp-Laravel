@@ -48,7 +48,8 @@ class PostsController extends Controller
         $post->user_id = auth()->user()->id;
         $post->save();
 
-        return redirect('/posts')->with('success', 'Todo Added');
+        // return redirect('/posts')->with('success', 'Todo Added');
+        return redirect()->route('posts.index', $post)->with('success', 'Todo Added');
     }
 
     /**

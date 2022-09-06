@@ -19,13 +19,13 @@
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
                         <td class="d-flex">
-                            <a class="btn btn-primary me-1" href="{{ route('admin.user.show', $user) }}">View</a>
-                            <a class="btn btn-success me-1" href="{{ route('admin.user.edit', $user) }}">Edit</a>
+                            <a class="btn btn-primary me-1" href="{{ route('admin.user.show', $user) }}" data-bs-toggle="tooltip" title="View user info">View</a>
+                            <a class="btn btn-success me-1" href="{{ route('admin.user.edit', $user) }}" data-bs-toggle="tooltip" title="Edit user info">Edit</a>
                             <form method="POST" action="{{ route('admin.user.destroy', $user) }}">
                                 @csrf
                                 @method('DELETE')
 
-                                <button type="submit" class="btn btn-danger">Delete</button>
+                                <button type="submit" class="btn btn-danger" data-bs-toggle="tooltip" title="Delete user">Delete</button>
                             </form>
                         </td>
                     </tr>

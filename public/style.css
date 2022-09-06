@@ -57,3 +57,22 @@
     max-width: 700px;
 }
 
+/* Admin/Users/Show  and Admin/Users/Edit*/
+
+.info-card{
+    width: 100%;
+}
+
+@media(min-width: 500px){
+    .info-card{
+        width: 30rem;
+    }
+}
+
+/* Admin/Dashboard */
+
+.announcement{
+    width: 100%;
+    max-width: 768px;
+}
+
