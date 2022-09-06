@@ -9,7 +9,7 @@
         </a>
 
         <div class="row">
-            {{-- @if (count($posts) > 0)
+            @if (count($posts) > 0)
                 @foreach ($posts as $post)
                     <div class="col my-1 mx-auto p-3">
                         <div class="todo-card card mx-auto shadow-sm p-3" data-bs-toggle="tooltip" title="Click to view">
@@ -34,15 +34,15 @@
                 @endforeach
             @else
                 <p class="text-center">You currently have no todos</p>
-            @endif --}}
-            @if(Auth::guard('web')->check())
+            @endif
+            {{-- @if(Auth::guard('web')->check())
                     Use logged in
                 @else
                     Logged Out
                 @endif
             @if(Auth::guard('admin')->check())
                     Admin is logged in
-            @endif
+            @endif --}}
         </div>
     </div>
 @endsection

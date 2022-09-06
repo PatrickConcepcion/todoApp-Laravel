@@ -2,10 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PublicController;
 use App\Http\Controllers\PostsController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\Auth\LoginController;
-
+use App\Http\Controllers\Admin\AdminHomeController;
+use App\Http\Controllers\Admin\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,6 +22,14 @@ use App\Http\Controllers\Admin\Auth\LoginController;
 Route::get('/', function () {
     return view('home');
 });
+
+// Landing page routes
+
+Route::get('/contact', [PublicController::class, 'contact'])->name('contact');
+Route::get('/about', [PublicController::class, 'about'])->name('about');
+
+
+
 
 Auth::routes();
 
@@ -39,23 +49,30 @@ Route::prefix('/posts')->group(function (){
         Route::delete('/', [PostsController::class, 'destroy'])->name('posts.destroy');
     });
 });
+//Admin Routes
 
-Route::prefix('/admin')->name('admin.')->namespace('Admin')->group(function(){
-        
+
+
+Route::prefix('/admin')->name('admin.')->group(function(){
+    
     //Login Routes
     Route::namespace('Auth')->group(function(){
+        Route::get('/dashboard', [AdminHomeController::class, 'index'])->name('home');
         Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-        // Route::get('/login','LoginController@showLoginForm')->name('login');
         Route::post('/login',[LoginController::class, 'login']);
-        Route::post('/logout','LoginController@logout')->name('logout');
+        Route::post('/logout',[LoginController::class, 'logout'])->name('logout');
 
-        //Forgot Password Routes
-    //     Route::get('/password/reset','ForgotPasswordController@showLinkRequestForm')->name('password.request');
-    //     Route::post('/password/email','ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+        //User management
+        Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
+            Route::get('/', [UserController::class, 'index'])->name('index');
 
-    //    Reset Password Routes
-    //     Route::get('/password/reset/{token}','ResetPasswordController@showResetForm')->name('password.reset');
-    //     Route::post('/password/reset','ResetPasswordController@reset')->name('password.update');
+            Route::prefix('/{user}')->group(function (){
+                Route::get('/', [UserController::class, 'show'])->name('show');
+                Route::put('/', [UserController::class, 'update'])->name('update');
+                Route::delete('/', [UserController::class, 'destroy'])->name('destroy');
+                Route::get('/edit', [UserController::class, 'edit'])->name('edit');
+            });
+        });
     });
 });
 

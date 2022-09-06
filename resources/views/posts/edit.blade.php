@@ -8,7 +8,7 @@
          
         <h3 class="text-center">Edit Todo</h3>
 
-        <div class="create-container mx-auto">
+        <div class="edit-container mx-auto">
             {!! Form::open(['action' => ['App\Http\Controllers\PostsController@update', $post], 'method' => 'POST']) !!}
                 <div class="form-group">
                     {{ Form::label('title','Title') }}

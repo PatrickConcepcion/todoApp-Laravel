@@ -14,6 +14,8 @@ class LoginController extends Controller
      * 
      * @return \Illuminate\Http\Response
      */
+ 
+    
     public function showLoginForm()
     {
         return view('admin.login',[

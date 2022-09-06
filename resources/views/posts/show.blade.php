@@ -7,7 +7,7 @@
         </a>
          
         <div class="view-container card p-3 mx-auto mt-5 shadow">
-            <h3>{{ $post->todoTitle }}</h3>
+            <h5>{{ $post->todoTitle }}</h5>
             <p class="fs-5">{{  $post->todoBody }}</p>
             <small>{{ $post->created_at }}</small>
         </div>

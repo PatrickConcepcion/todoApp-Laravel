@@ -43,13 +43,13 @@
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
 
-                        <li class="nav-item text-end bx-tada-hover">
+                        <li class="nav-item text-end ">
                             <a class="nav-link" href="{{ url('/') }}">Home</a>
                         </li>
 
                         @auth
 
-                        <li class="nav-item text-end bx-tada-hover">
+                        <li class="nav-item text-end ">
                             <a class="nav-link" href="{{ url('/posts') }}">Todos</a>
                         </li>
 
@@ -57,16 +57,16 @@
 
                         @guest
                         
-                        <li class="nav-item text-end bx-tada-hover">
-                            <a class="nav-link" href="{{ url('/') }}">About</a>
+                        <li class="nav-item text-end ">
+                            <a class="nav-link" href="{{ route('about') }}">About</a>
                         </li>
                         
-                        <li class="nav-item text-end bx-tada-hover">
-                            <a class="nav-link" href="{{ url('/') }}">Contact</a>
+                        <li class="nav-item text-end ">
+                            <a class="nav-link" href="{{ route('contact') }}">Contact</a>
                         </li>
                         
                             @if (Route::has('login'))
-                                <li class="nav-item m-0 text-end">
+                                <li class="nav-item m-0 text-end ms-md-5">
                                     <a class="btn btn-outline-dark" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
