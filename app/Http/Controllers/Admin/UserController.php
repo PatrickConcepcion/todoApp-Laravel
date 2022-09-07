@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Management;
 use App\Models\User;
-use DB;
+use App\Http\Requests\UserUpdateRequest;
 
 class UserController extends Controller
 {
@@ -51,13 +51,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(UserUpdateRequest $request, User $user)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required'
-        ]);
-
+   
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->save();
