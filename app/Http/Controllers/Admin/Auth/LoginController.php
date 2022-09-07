@@ -21,7 +21,6 @@ class LoginController extends Controller
         return view('admin.login',[
             'title' => 'Admin Login',
             'loginRoute' => 'admin.login',
-            'forgotPasswordRoute' => 'admin.password.request',
         ]);
     }
 
