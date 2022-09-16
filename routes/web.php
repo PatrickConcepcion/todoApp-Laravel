@@ -10,6 +10,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\AdminHomeController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\WeatherForecastController;
+use App\Models\WeatherForecast;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -77,6 +80,24 @@ Route::group(['middleware' => ['auth']], function(){
                         Route::delete('/', [UserController::class, 'destroy'])->name('destroy');
                         Route::get('/edit', [UserController::class, 'edit'])->name('edit');
                     });
+                });
+
+                // Route::group(['prefix' => 'weather', 'as' => 'weather'], function(){
+                //     Route::get('/', [WeatherForecastController::class, 'index'])->name('index');
+                // });
+
+                Route::group(['prefix' => '/weather', 'as' => 'weatherapi.'], function(){
+
+                    Route::get('/', [WeatherForecastController::class, 'index'])->name('index');
+
+                    Route::group(['prefix' => '/{weather}'], function(){
+                        Route::get('/', [WeatherForecastController::class, 'show'])->name('show');
+                        Route::put('/', [WeatherForecastController::class, 'update'])->name('update');
+                        Route::delete('/', [WeatherForecastController::class, 'destroy'])->name('destroy');
+                        Route::get('/edit', [WeatherForecastController::class, 'edit'])->name('edit');
+
+                    });
+
                 });
             });
             

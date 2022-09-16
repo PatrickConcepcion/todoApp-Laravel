@@ -29,4 +29,5 @@ class UpdateWeatherForecastRequest extends FormRequest
             'chance_of_rain' => 'required'
         ];
     }
+
 }

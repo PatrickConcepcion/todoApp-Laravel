@@ -76,3 +76,8 @@
     max-width: 768px;
 }
 
+/* Admin/WeatherForecast Index */
+
+.weather-card{
+    width: 25rem;
+}

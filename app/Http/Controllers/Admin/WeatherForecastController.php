@@ -17,8 +17,9 @@ class WeatherForecastController extends Controller
     public function index()
     {
 
-        $weather = WeatherForecast::get();
-        return $weather;
+        $weatherInfo = WeatherForecast::get();
+
+        return view('admin.weather.index')->with(compact(['weatherInfo']));
 
     }
 
@@ -42,8 +43,13 @@ class WeatherForecastController extends Controller
      */
     public function show(WeatherForecast $weather)
     {
-        return $weather;
+        return view('admin.weather.show')->with(compact(['weather']));
 
+    }
+
+    public function edit(WeatherForecast $weather)
+    {
+        return view('admin.weather.edit')->with(compact(['weather']));
     }
 
     /**
@@ -55,9 +61,13 @@ class WeatherForecastController extends Controller
      */
     public function update(UpdateWeatherForecastRequest $request, WeatherForecast $weather)
     {
-        $weather->update($request->all());
+        // $weather->update($request->all());
+        $weather->date = $request->input('date-input');
+        $weather->weather_forecast = $request->input('weather-forecast-input');
+        $weather->chance_of_rain = $request->input('chance-of-rain-input');
+        $weather->save();
 
-        return $weather;
+        return redirect()->route('admin.weatherapi.index');
     }
 
     /**
@@ -70,6 +80,6 @@ class WeatherForecastController extends Controller
     {
         $weather->delete();
 
-        return response('Deleted', 204);
+        return redirect()->route('admin.weatherapi.index');
     }
 }

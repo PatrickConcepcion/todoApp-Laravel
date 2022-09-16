@@ -50,6 +50,10 @@
                         <li class="nav-item text-end">
                             <a class="nav-link" href="{{ route('admin.home') }}">Dashboard</a>
                         </li>
+                        
+                        <li class="nav-item text-end">
+                            <a class="nav-link" href="{{ route('admin.weatherapi.index') }}">Weather</a>
+                        </li>
 
                         <li class="nav-item text-end">
                             <a class="nav-link" href="{{ route('admin.user.index') }}">User Management</a>
@@ -83,7 +87,6 @@
             @yield('content')
         </main>
     </div>
-    <script>
-    </script>
+    @yield('scripts')
 </body>
 </html>
