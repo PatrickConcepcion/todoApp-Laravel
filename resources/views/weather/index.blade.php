@@ -1,14 +1,10 @@
-@extends('layouts.admin')
+@extends('layouts.app')
 
 @section('content')
 
     <div class="container">
 
         <h3 class="text-center mt-2">Weather Updates</h3>
-
-    <a class="btn btn-primary mt-2 mb-4" href="{{ route('admin.weatherapi.create') }}">
-        <i class='bx bx-plus'> </i><span> Create Weather Update</span>
-    </a>
 
     <div class="row weather-cards">
 
@@ -29,16 +25,7 @@
                                     <div class="col text-end">Chance of rain</div>
                                     <div class="col">{{ $weather->chance_of_rain }}</div>
                                 </div>
-                                <a href="{{ route('admin.weatherapi.show', $weather) }}" class="stretched-link"></a>
-                            </div>
-                            
-                            <div class="card-control mt-4 d-flex justify-content-center">
-                                <a class="btn btn-primary me-1" href="{{ route('admin.weatherapi.edit', $weather) }}">Edit</a>
-                                <form action="{{ route('admin.weatherapi.destroy', $weather) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger" type="submit">Delete</button>
-                                </form>
+                                <a href="{{ route('weather.show', $weather) }}" class="stretched-link"></a>
                             </div>
                         </div>
                     </div>

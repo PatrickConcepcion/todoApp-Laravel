@@ -17,10 +17,16 @@ class WeatherForecastController extends Controller
     public function index()
     {
 
-        $weatherInfo = WeatherForecast::get();
+        $weatherInfo = WeatherForecast::orderBy('date', 'desc')
+            ->get();
 
         return view('admin.weather.index')->with(compact(['weatherInfo']));
 
+    }
+
+    public function create()
+    {
+        return view('admin.weather.create');
     }
 
     /**
@@ -29,10 +35,19 @@ class WeatherForecastController extends Controller
      * @param  \App\Http\Requests\StoreWeatherForecastRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreWeatherForecastRequest $request)
+    public function store(StoreWeatherForecastRequest $request, WeatherForecast $weather)
     {
-        $weatherInfo = WeatherForecast::create($request->all());
-        return $weatherInfo;
+        // $weatherInfo = WeatherForecast::create($request->all());
+        // return $weatherInfo;
+
+        $request->validated();
+
+        $weather->date = $request->input('date');
+        $weather->weather_forecast = $request->input('weather_forecast');
+        $weather->chance_of_rain = $request->input('chance_of_rain');
+        $weather->save();
+
+        return redirect()->route('admin.weatherapi.index');
     }
 
     /**
@@ -60,11 +75,12 @@ class WeatherForecastController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateWeatherForecastRequest $request, WeatherForecast $weather)
-    {
-        // $weather->update($request->all());
-        $weather->date = $request->input('date-input');
-        $weather->weather_forecast = $request->input('weather-forecast-input');
-        $weather->chance_of_rain = $request->input('chance-of-rain-input');
+    {   
+        $request->validated();
+
+        $weather->date = $request->input('date');
+        $weather->weather_forecast = $request->input('weather_forecast');
+        $weather->chance_of_rain = $request->input('chance_of_rain');
         $weather->save();
 
         return redirect()->route('admin.weatherapi.index');

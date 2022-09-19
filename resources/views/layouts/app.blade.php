@@ -44,13 +44,17 @@
                         <!-- Authentication Links -->
 
                         <li class="nav-item text-end ">
-                            <a class="nav-link" href="{{ url('/') }}">Home</a>
+                            <a class="nav-link" href="{{ route('home') }}">Home</a>
                         </li>
 
                         @auth
 
                         <li class="nav-item text-end ">
-                            <a class="nav-link" href="{{ url('/posts') }}">Todos</a>
+                            <a class="nav-link" href="{{ route('posts.index') }}">Todos</a>
+                        </li>
+
+                        <li class="nav-item text-end ">
+                            <a class="nav-link" href="{{ route('weather.index') }}">Weather</a>
                         </li>
 
                         @endauth
